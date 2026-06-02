@@ -1,4 +1,4 @@
-package com.smartcart.productservice.config;
+package com.smartcart.orderservice.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

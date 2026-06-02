@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.smartcart.userservice.dto.LoginRequestDTO;
 import com.smartcart.userservice.config.JwtUtil;
+import com.smartcart.userservice.enums.Role;
 
 @Service
 public class UserService {
@@ -34,6 +35,7 @@ public class UserService {
                 .name(requestDTO.getName())
                 .email(requestDTO.getEmail())
                 .password(passwordEncoder.encode(requestDTO.getPassword()))
+                .role(Role.CUSTOMER)
                 .build();
 
         userRepository.save(user);
@@ -59,7 +61,10 @@ public class UserService {
             return "Invalid password";
         }
 
-        return jwtUtil.generateToken(user.getEmail());
+        return jwtUtil.generateToken(
+                user.getEmail(),
+                user.getRole().name()
+        );
     }
 
 

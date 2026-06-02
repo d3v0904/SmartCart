@@ -1,4 +1,4 @@
-package com.smartcart.productservice.config;
+package com.smartcart.orderservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,25 +26,12 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html"
                         ).permitAll()
-                        .requestMatchers(
-                                org.springframework.http.HttpMethod.GET,
-                                "/api/products/**"
-                        ).permitAll()
 
                         .requestMatchers(
                                 org.springframework.http.HttpMethod.POST,
-                                "/api/products/**"
-                        ).hasRole("ADMIN")
+                                "/api/orders/**"
+                        ).hasRole("CUSTOMER")
 
-                        .requestMatchers(
-                                org.springframework.http.HttpMethod.PUT,
-                                "/api/products/**"
-                        ).hasRole("ADMIN")
-
-                        .requestMatchers(
-                                org.springframework.http.HttpMethod.DELETE,
-                                "/api/products/**"
-                        ).hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter,

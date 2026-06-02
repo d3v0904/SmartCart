@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import com.smartcart.userservice.enums.Role;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @Entity
 @Table(name = "users")
@@ -29,4 +32,7 @@ public class UserEntity {
 
     @NotBlank(message = "Password is required")
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
